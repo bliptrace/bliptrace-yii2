@@ -1,0 +1,61 @@
+{
+    "name": "g8scope/yii2",
+    "version": "1.0.0",
+    "description": "Yii2 SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "keywords": [
+        "yii2",
+        "yii",
+        "g8scope",
+        "error-tracking",
+        "observability",
+        "sdk"
+    ],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "g8scope/php": "*"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "laravel/pint": "^1.0"
+    },
+    "suggest": {
+        "yiisoft/yii2": "^2.0 — required to use the application component / error handler integration"
+    },
+    "autoload": {
+        "psr-4": {
+            "G8Scope\\Yii2\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "G8Scope\\Yii2\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/pint"
+    },
+    "extra": {
+        "bootstrap": "G8Scope\\Yii2\\Bootstrap"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../g8scope-php",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
