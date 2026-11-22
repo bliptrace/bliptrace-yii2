@@ -28,11 +28,11 @@ return [
     'components' => [
         'g8scope' => [
             'class'       => \G8Scope\Yii2\G8ScopeComponent::class,
-            'enabled'     => (bool) getenv('G8SCOPE_ENABLED') ?: true,
-            'key'         => getenv('G8SCOPE_KEY') ?: null,
-            'endpoint'    => getenv('G8SCOPE_ENDPOINT') ?: 'https://ingest.scope.g8suite.com',
+            'enabled'     => filter_var(\G8Scope\Php\Env::get('ENABLED', 'true'), FILTER_VALIDATE_BOOL),
+            'key'         => \G8Scope\Php\Env::get('KEY'),
+            'endpoint'    => \G8Scope\Php\Env::get('ENDPOINT', 'https://ingest.scope.g8suite.com'),
             'environment' => YII_ENV,
-            'release'     => getenv('G8SCOPE_RELEASE') ?: null,
+            'release'     => \G8Scope\Php\Env::get('RELEASE'),
             'timeout'     => 3,
             'maxFrames'   => 30,
             'maxMessage'  => 2000,
@@ -44,6 +44,10 @@ return [
     ],
 ];
 ```
+
+> **Env names:** `G8Scope\Php\Env::get('KEY')` (from `bliptrace/php` ^1.2) reads `BLIPTRACE_KEY` and
+> falls back to the deprecated `G8SCOPE_KEY` when it is unset (fallback removed in 2.0). Rename your
+> variables to `BLIPTRACE_*`; `G8SCOPE_ENV` becomes `BLIPTRACE_ENVIRONMENT`.
 
 ### Configuration
 
