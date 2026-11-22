@@ -1,6 +1,6 @@
 # g8scope/yii2
 
-Yii2 SDK for **g8scope** — auto-captures exceptions and ships them to the g8scope ingest API. This is a **thin adapter** over the runtime PHP SDK [`g8scope/php`](../g8scope-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
+Yii2 SDK for **g8scope** — auto-captures exceptions and ships them to the g8scope ingest API. This is a **thin adapter** over the runtime PHP SDK [`g8scope/php`](../bliptrace-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
 
 ## Requirements
 
