@@ -1,7 +1,7 @@
 {
-    "name": "g8scope/yii2",
+    "name": "bliptrace/yii2",
     "version": "1.0.0",
-    "description": "Yii2 SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "description": "Yii2 SDK for g8scope — auto-captures exceptions and ships them to the ingest API. Thin adapter over bliptrace/php.",
     "keywords": [
         "yii2",
         "yii",
@@ -14,7 +14,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "g8scope/php": "*"
+        "bliptrace/php": "^1.1"
     },
     "require-dev": {
         "pestphp/pest": "^3.0",

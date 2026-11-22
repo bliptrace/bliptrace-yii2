@@ -1,17 +1,17 @@
-# g8scope/yii2
+# bliptrace/yii2
 
-Yii2 SDK for **g8scope** — auto-captures exceptions and ships them to the g8scope ingest API. This is a **thin adapter** over the runtime PHP SDK [`g8scope/php`](../bliptrace-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
+Yii2 SDK for **g8scope** — auto-captures exceptions and ships them to the g8scope ingest API. This is a **thin adapter** over the runtime PHP SDK [`bliptrace/php`](../bliptrace-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
 
 ## Requirements
 
 - PHP `^8.2`
-- `g8scope/php` (runtime SDK, pulled automatically)
+- `bliptrace/php` (runtime SDK, pulled automatically)
 - `yiisoft/yii2:^2.0` (your application — listed as a `suggest`)
 
 ## Installation
 
 ```bash
-composer require g8scope/yii2
+composer require bliptrace/yii2
 ```
 
 ## Wiring
@@ -91,7 +91,7 @@ server-side from the ingest key.
 
 ## Testing
 
-The test suite runs standalone against only `g8scope/php` — the Yii framework is
+The test suite runs standalone against only `bliptrace/php` — the Yii framework is
 not required:
 
 ```bash
