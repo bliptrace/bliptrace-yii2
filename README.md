@@ -30,7 +30,7 @@ return [
             'class'       => \G8Scope\Yii2\G8ScopeComponent::class,
             'enabled'     => filter_var(\G8Scope\Php\Env::get('ENABLED', 'true'), FILTER_VALIDATE_BOOL),
             'key'         => \G8Scope\Php\Env::get('KEY'),
-            'endpoint'    => \G8Scope\Php\Env::get('ENDPOINT', 'https://ingest.scope.g8suite.com'),
+            'endpoint'    => \G8Scope\Php\Env::get('ENDPOINT', 'https://ingest.bliptrace.com/v1/ingest'),
             'environment' => YII_ENV,
             'release'     => \G8Scope\Php\Env::get('RELEASE'),
             'timeout'     => 3,
@@ -55,7 +55,7 @@ return [
 |---|---|---|
 | `enabled` | `enabled` | Master kill switch. |
 | `key` | `key` | Ingest key — resolves the **project server-side** (never sent in the payload). |
-| `endpoint` | `endpoint` | Ingest endpoint; transport posts to `{endpoint}/v1/ingest` with `X-Ingest-Key`. |
+| `endpoint` | `endpoint` | Ingest URL (a bare base URL also works: `/v1/ingest` is appended when missing); sent with `X-Ingest-Key`. |
 | `environment` | `environment` | e.g. `production`, `staging`. |
 | `release` | `release` | App release / version. |
 | `timeout` | `timeout` | HTTP timeout (seconds). |
