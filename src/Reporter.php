@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Yii2;
+namespace Bliptrace\Yii2;
 
-use G8Scope\Php\Client;
-use G8Scope\Yii2\Context\RequestContext;
+use Bliptrace\Php\Client;
+use Bliptrace\Yii2\Context\RequestContext;
 use Throwable;
 
 /**

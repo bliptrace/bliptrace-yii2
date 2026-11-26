@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use G8Scope\Php\Transport\Transport;
+use Bliptrace\Php\Transport\Transport;
 
 /** In-memory transport that records what would have been shipped. */
 final class FakeTransport implements Transport

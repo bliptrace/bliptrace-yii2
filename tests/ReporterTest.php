@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use G8Scope\Php\Client;
-use G8Scope\Php\Config;
-use G8Scope\Php\Transport\Transport;
-use G8Scope\Yii2\Reporter;
+use Bliptrace\Php\Client;
+use Bliptrace\Php\Config;
+use Bliptrace\Php\Transport\Transport;
+use Bliptrace\Yii2\Reporter;
 
 function reporterWith(FakeTransport $t, array $config = [], ?array $request = null, ?array $user = null): Reporter
 {
@@ -24,7 +24,7 @@ it('builds and ships a valid envelope', function (): void {
     expect($env['exception']['type'])->toBe('RuntimeException')
         ->and($env['exception']['message'])->toBe('boom')
         ->and($env['runtime']['name'])->toBe('php')
-        ->and($env['sdk']['name'])->toBe('g8scope-php')
+        ->and($env['sdk']['name'])->toBe('bliptrace-php')
         ->and($t->sent[0]['endpoint'])->toBe('http://api')
         ->and($t->sent[0]['key'])->toBe('k');
 });

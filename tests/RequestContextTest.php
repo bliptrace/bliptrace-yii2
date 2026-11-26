@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use G8Scope\Yii2\Context\RequestContext;
+use Bliptrace\Yii2\Context\RequestContext;
 
 it('yields an empty custom map and no request when nothing is provided', function (): void {
     $ctx = RequestContext::capture();

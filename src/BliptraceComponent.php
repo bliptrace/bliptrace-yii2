@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Yii2;
+namespace Bliptrace\Yii2;
 
-use G8Scope\Php\Client;
-use G8Scope\Php\Config;
-use G8Scope\Yii2\Context\RequestContext;
+use Bliptrace\Php\Client;
+use Bliptrace\Php\Config;
+use Bliptrace\Yii2\Context\RequestContext;
 use Throwable;
 use yii\base\Component;
 
@@ -15,13 +15,13 @@ use yii\base\Component;
 if (class_exists(Component::class)) {
     /**
      * Yii2 application component. Register it in `components` (and `bootstrap`)
-     * and configure its public props; on init it builds a g8scope Client from a
+     * and configure its public props; on init it builds a Bliptrace Client from a
      * {@see Config} and exposes {@see report()} which the error handler forwards to.
      *
      * The `project` is NEVER sent in the payload — it is resolved server-side
      * from the ingest key.
      */
-    final class G8ScopeComponent extends Component
+    final class BliptraceComponent extends Component
     {
         public bool $enabled = true;
 
@@ -64,7 +64,7 @@ if (class_exists(Component::class)) {
                     scrubKeys: $this->scrubKeys,
                     basePath: defined('YII2_PATH') ? '' : '',
                     enabled: $this->enabled,
-                    sdkName: 'g8scope-yii2',
+                    sdkName: 'bliptrace-yii2',
                     sdkVersion: '1.0.0',
                 );
 

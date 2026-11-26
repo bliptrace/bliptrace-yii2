@@ -1,6 +1,6 @@
 # bliptrace/yii2
 
-Yii2 SDK for **g8scope** — auto-captures exceptions and ships them to the g8scope ingest API. This is a **thin adapter** over the runtime PHP SDK [`bliptrace/php`](../bliptrace-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
+Yii2 SDK for **Bliptrace** — auto-captures exceptions and ships them to the Bliptrace ingest API. This is a **thin adapter** over the runtime PHP SDK [`bliptrace/php`](../bliptrace-php): it adds a Yii2 application component, an error-handler hook, request-context enrichment, and a Reporter. It never throws into the host application.
 
 ## Requirements
 
@@ -23,16 +23,16 @@ handler and forwards handled exceptions to the component.
 ```php
 // config/web.php
 return [
-    'bootstrap' => ['g8scope'],
+    'bootstrap' => ['bliptrace'],
 
     'components' => [
-        'g8scope' => [
-            'class'       => \G8Scope\Yii2\G8ScopeComponent::class,
-            'enabled'     => filter_var(\G8Scope\Php\Env::get('ENABLED', 'true'), FILTER_VALIDATE_BOOL),
-            'key'         => \G8Scope\Php\Env::get('KEY'),
-            'endpoint'    => \G8Scope\Php\Env::get('ENDPOINT', 'https://ingest.bliptrace.com/v1/ingest'),
+        'bliptrace' => [
+            'class'       => \Bliptrace\Yii2\BliptraceComponent::class,
+            'enabled'     => filter_var(\Bliptrace\Php\Env::get('ENABLED', 'true'), FILTER_VALIDATE_BOOL),
+            'key'         => \Bliptrace\Php\Env::get('KEY'),
+            'endpoint'    => \Bliptrace\Php\Env::get('ENDPOINT', 'https://ingest.bliptrace.com/v1/ingest'),
             'environment' => YII_ENV,
-            'release'     => \G8Scope\Php\Env::get('RELEASE'),
+            'release'     => \Bliptrace\Php\Env::get('RELEASE'),
             'timeout'     => 3,
             'maxFrames'   => 30,
             'maxMessage'  => 2000,
@@ -45,13 +45,11 @@ return [
 ];
 ```
 
-> **Env names:** `G8Scope\Php\Env::get('KEY')` (from `bliptrace/php` ^1.2) reads `BLIPTRACE_KEY` and
-> falls back to the deprecated `G8SCOPE_KEY` when it is unset (fallback removed in 2.0). Rename your
-> variables to `BLIPTRACE_*`; `G8SCOPE_ENV` becomes `BLIPTRACE_ENVIRONMENT`.
+> **Env names:** `Bliptrace\Php\Env::get('KEY')` (from `bliptrace/php` ^2.0) reads `BLIPTRACE_KEY`.
 
 ### Configuration
 
-| Property | Maps to `G8Scope\Php\Config` | Notes |
+| Property | Maps to `Bliptrace\Php\Config` | Notes |
 |---|---|---|
 | `enabled` | `enabled` | Master kill switch. |
 | `key` | `key` | Ingest key — resolves the **project server-side** (never sent in the payload). |
@@ -69,7 +67,7 @@ return [
 When `Bootstrap` is active (via `extra.bootstrap` in `composer.json` or by being
 listed in the app `bootstrap` array), it subscribes to the application
 `EVENT_AFTER_REQUEST` event. If the Yii error handler surfaced an exception
-during the request, that exception is forwarded to the `g8scope` component's
+during the request, that exception is forwarded to the `bliptrace` component's
 `report()` method, which enriches it with request context and ships it.
 
 You can also report manually anywhere in your app:
@@ -78,7 +76,7 @@ You can also report manually anywhere in your app:
 try {
     // ...
 } catch (\Throwable $e) {
-    Yii::$app->g8scope->report($e);
+    Yii::$app->bliptrace->report($e);
 }
 ```
 

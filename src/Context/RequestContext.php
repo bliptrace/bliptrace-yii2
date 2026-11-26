@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Yii2\Context;
+namespace Bliptrace\Yii2\Context;
 
 /**
  * Builds the envelope context from the current Yii2 request (if any).

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Yii2;
+namespace Bliptrace\Yii2;
 
 use Throwable;
 use yii\base\Application;
@@ -14,13 +14,13 @@ if (interface_exists(BootstrapInterface::class)) {
     /**
      * Optional Yii2 bootstrap. When listed in the application `bootstrap` array
      * (and referenced by composer's `extra.bootstrap`), it hooks the application
-     * error handler: every handled exception is forwarded to the `g8scope`
+     * error handler: every handled exception is forwarded to the `bliptrace`
      * component's report() method.
      *
      * Wiring (config/web.php):
-     *   'bootstrap' => ['g8scope'],
+     *   'bootstrap' => ['bliptrace'],
      *   'components' => [
-     *       'g8scope' => ['class' => \G8Scope\Yii2\G8ScopeComponent::class, ...],
+     *       'bliptrace' => ['class' => \Bliptrace\Yii2\BliptraceComponent::class, ...],
      *   ],
      *
      * The component itself implements BootstrapInterface-style hooking here so
@@ -34,7 +34,7 @@ if (interface_exists(BootstrapInterface::class)) {
             try {
                 $handler = $app->getErrorHandler();
 
-                // Forward any exception the error handler surfaces to g8scope.
+                // Forward any exception the error handler surfaces to bliptrace.
                 $app->on(Application::EVENT_AFTER_REQUEST, function () use ($app): void {
                     $exception = $app->getErrorHandler()->exception ?? null;
                     if ($exception instanceof Throwable) {
@@ -52,8 +52,8 @@ if (interface_exists(BootstrapInterface::class)) {
         private function forward(mixed $app, Throwable $e): void
         {
             try {
-                $component = $app->has('g8scope') ? $app->get('g8scope') : null;
-                if ($component instanceof G8ScopeComponent) {
+                $component = $app->has('bliptrace') ? $app->get('bliptrace') : null;
+                if ($component instanceof BliptraceComponent) {
                     $component->report($e);
                 }
             } catch (Throwable) {
